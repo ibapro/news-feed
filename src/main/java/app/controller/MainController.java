@@ -2,15 +2,13 @@ package app.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class TestController {
+public class MainController {
 
-    @ResponseBody
-    @RequestMapping("/spring")
+    @RequestMapping("/main-page")
     public String handle(){
-        return "Spring";
+        return "main-page";
     }
 
 }
