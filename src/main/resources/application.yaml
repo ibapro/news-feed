@@ -1,0 +1,39 @@
+server:
+  port: 8080
+spring:
+  main:
+    banner-mode: off
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: password
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  mail:
+    host:
+      smtp: gmail.com
+    port: 587
+    username: newsfeedinfoteam@gmail.com
+    password: News12345
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls: true
+
+#  spring.mail.host=smtp.gmail.com
+#  spring.mail.port=587
+#  spring.mail.username=<login user to smtp server>
+#  spring.mail.password=<login password to smtp server>
+#  spring.mail.properties.mail.smtp.auth=true
+#  spring.mail.properties.mail.smtp.starttls.enable=true
+
+news:
+  api:
+    url: http://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=1f82f278e4784d88b3455ebf6685ce8d
+
+
+
