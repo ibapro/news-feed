@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Tinder: Registration</title>
@@ -11,34 +13,58 @@
 
 <section class="registration-section">
     <header class="header">
-        <a href="/registration" class="header-link"><img src="./img/Group%201.png" alt="IBA Tech Academy"></a>
+        <a href="registration" class="header-link"><img src="./img/Group%201.png" alt="IBA Tech Academy"></a>
     </header>
     <!--    <img class="registration-section-image" src="./img/login-background.svg" alt="404">-->
     <div class="registration-section-container">
         <h1 class="registration-section-container-title">Create An Account</h1>
-        <p class="registration-section-container-description">Create your account, it takes less than a minute. If you already have an account - <a href="./index.html" class="registration-section-container-description-link">login</a></p>
-        <form action="" class="registration-section-container-form">
+        <p class="registration-section-container-description">Create your account, it takes less than a minute. If you
+            already have an account - <a href="index" class="registration-section-container-description-link">login</a>
+        </p>
+        <form action="#" th:modelAttribute="user" th:action="@{/create}" th:object="${user}" method="post"
+              class="registration-section-container-form">
             <div class="registration-section-container-form-input-wrapper">
                 <img class="box-icons" src="./img/user-icon.svg" alt="User Icon">
                 <label for="full-name"></label>
-                <input class="registration-section-container-form-input" id="full-name" placeholder="Full name" type="text">
+                <input th:field="*{fullName}" class="registration-section-container-form-input" id="full-name"
+                       placeholder="Full name" type="text">
+            </div>
+            <div>
+                <p style="color: darkred" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Name
+                    Error</p>
             </div>
             <div class="registration-section-container-form-input-wrapper">
                 <img class="box-icons" src="./img/mail-icon.svg" alt="User Icon">
                 <label for="email"></label>
-                <input class="registration-section-container-form-input" id="email" placeholder="Email address" type="email">
+                <input th:field="*{email}" class="registration-section-container-form-input" id="email"
+                       placeholder="Email address" type="email">
+            </div>
+
+            <div>
+                <p style="color: darkred" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name
+                    Error</p>
             </div>
             <div class="registration-section-container-form-input-wrapper">
                 <img class="box-icons" src="./img/lock-icon.svg" alt="User Icon">
                 <label for="password"></label>
-                <input class="registration-section-container-form-input" id="password" placeholder="Password" type="password">
+                <input th:field="*{password}" class="registration-section-container-form-input" id="password"
+                       placeholder="Password" type="password">
+            </div>
+
+            <div>
+                <p style="color: darkred" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name
+                    Error</p>
             </div>
             <div class="registration-section-container-form-input-wrapper mb0">
                 <img class="box-icons" src="./img/lock-icon.svg" alt="User Icon">
                 <label for="confirm-password"></label>
-                <input class="registration-section-container-form-input" id="confirm-password" placeholder="Confirm Password" type="password">
+                <input th:field="*{confirmPassword}" class="registration-section-container-form-input" id="confirm-password"
+                       placeholder="Confirm Password" type="password">
             </div>
+
+
             <input type="submit" value="Create account" class="registration-section-container-form-submit">
+
         </form>
     </div>
 </section>

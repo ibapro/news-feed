@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+    <head>
+        <meta charset="UTF-8" http-equiv="refresh" content="1;index.html">
+        <title>Tinder: Registration</title>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="./css/registration.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="alert alert-success" th:text="${user.fullName +'!' + 'You have successfully registered, '}">Success</h1>
+        </div>
+    </body>
+</html>

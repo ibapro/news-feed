@@ -1,14 +1,43 @@
 package app.controller;
 
+import app.dto.UserDTO;
+import app.service.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 public class RegistrationController {
 
-    @RequestMapping("/registration")
-    public String handle(){
+    private final UserService userService;
+
+    public RegistrationController(UserService userService) {
+        this.userService = userService;
+    }
+
+
+    @GetMapping("registration")
+    public String handle_get(Model model) {
+        model.addAttribute("user", new UserDTO());
         return "registration";
     }
+
+    @PostMapping(value = "/create")
+    public ModelAndView handle_post(@Valid @ModelAttribute(value = "user") UserDTO user, BindingResult result) {
+        if (result.hasErrors())
+            return new ModelAndView("registration", "user", user);
+        userService.persist(user);
+        return new ModelAndView("successRegister", "successRegister", user);
+    }
+
+    @GetMapping("successRegister")
+    public String getSuccessRegisterPage() {
+        return "successRegister";
+    }
+
 
 }
