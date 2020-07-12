@@ -21,7 +21,7 @@
         <p class="registration-section-container-description">Create your account, it takes less than a minute. If you
             already have an account - <a href="index" class="registration-section-container-description-link">login</a>
         </p>
-        <form action="#" th:modelAttribute="user" th:action="@{/create}" th:object="${user}" method="post"
+        <form action="#" th:modelAttribute="user" th:action="@{/registration}" th:object="${user}" method="post"
               class="registration-section-container-form">
             <div class="registration-section-container-form-input-wrapper">
                 <img class="box-icons" src="./img/user-icon.svg" alt="User Icon">
@@ -44,6 +44,11 @@
                 <p style="color: darkred" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name
                     Error</p>
             </div>
+
+            <div  >
+                <p style="color: darkred" th:if="${param.emailError}" th:text="${param.emailError}">Name
+                    Error</p>
+            </div>
             <div class="registration-section-container-form-input-wrapper">
                 <img class="box-icons" src="./img/lock-icon.svg" alt="User Icon">
                 <label for="password"></label>
@@ -60,6 +65,10 @@
                 <label for="confirm-password"></label>
                 <input th:field="*{confirmPassword}" class="registration-section-container-form-input" id="confirm-password"
                        placeholder="Confirm Password" type="password">
+            </div>
+            <div  >
+                <p style="color: darkred"  th:if="${#fields.hasErrors('global')}" th:errors="*{global}" >Name
+                    Error</p>
             </div>
 
 

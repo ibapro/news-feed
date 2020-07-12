@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.dto.UserDTO;
+import app.exception.UserAlreadyExistException;
 import app.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,10 +27,12 @@ public class RegistrationController {
         return "registration";
     }
 
-    @PostMapping(value = "/create")
+    @PostMapping(value = "/registration")
     public ModelAndView handle_post(@Valid @ModelAttribute(value = "user") UserDTO user, BindingResult result) {
         if (result.hasErrors())
             return new ModelAndView("registration", "user", user);
+        if (userService.isRegistered(user.getEmail()))
+            throw new UserAlreadyExistException("There is an account with that email address:" + user.getEmail());
         userService.persist(user);
         return new ModelAndView("successRegister", "successRegister", user);
     }
