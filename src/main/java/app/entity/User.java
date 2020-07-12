@@ -73,6 +73,7 @@ public class User implements UserDetails {
     }
 
     public List<ArticlesEntity> getArticles() {
+        if (articles == null) return new ArrayList<>();
         return articles;
     }
 
