@@ -1,20 +1,12 @@
 package app.dto;
 
 import app.constraints.PasswordMatches;
-import app.entity.ArticlesEntity;
 import app.restclient.response.Articles;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.UniqueElements;
 
-import javax.persistence.Column;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 //
 //@Data
@@ -28,15 +20,13 @@ public class UserDTO {
     @NotBlank(message = "Full Name is empty")
     private String fullName;
     @NotBlank(message = "Email is empty")
-    @NotBlank(message = "Email is already exists")
     private String email;
     @Size(message = "Password must contain at least 8 characters", min = 8)
     private String password;
-    //@Size(message = "Password must contain at least 8 characters",min = 8)
-    @NotBlank(message = "Password does not match")
+    @Size(message = "Password must contain at least 8 characters", min = 8)
     private String confirmPassword;
 
-    private Set<Articles> articles = new HashSet<>();
+    private List<Articles> articles = new ArrayList<>();
 
 
     public String getFullName() {
@@ -71,11 +61,11 @@ public class UserDTO {
         this.confirmPassword = confirmPassword;
     }
 
-    public Set<Articles> getArticles() {
+    public List<Articles> getArticles() {
         return articles;
     }
 
-    public void setArticles(Set<Articles> articles) {
+    public void setArticles(List<Articles> articles) {
         this.articles = articles;
     }
 
@@ -85,5 +75,9 @@ public class UserDTO {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public boolean passwordMatches(){
+        return password.equalsIgnoreCase(confirmPassword);
     }
 }

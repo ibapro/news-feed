@@ -1,6 +1,5 @@
 package app.entity;
 
-import app.restclient.response.Articles;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,6 +24,7 @@ public class User implements UserDetails {
     @Transient
     private final Set<GrantedAuthority> authorities = new HashSet<>();
 
+
     public User() {
         authorities.add(new SimpleGrantedAuthority("USER"));
     }
@@ -36,13 +36,13 @@ public class User implements UserDetails {
     }
 
 
-
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_news"
-            , joinColumns = { @JoinColumn (name = "user_id") }
-            ,inverseJoinColumns = { @JoinColumn (name = "articles_id")}
+            , joinColumns = @JoinColumn(name = "user_id")
+            , inverseJoinColumns = @JoinColumn(name = "articles_id")
     )
-    private Set<ArticlesEntity> articles = new HashSet<>();
+    private List<ArticlesEntity> articles;
+
 
 
     public int getId() {
@@ -73,13 +73,16 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public Set<ArticlesEntity> getArticles() {
+    public List<ArticlesEntity> getArticles() {
+        if (articles == null) return new ArrayList<>();
         return articles;
     }
 
-    public void setArticles(Set<ArticlesEntity> articles) {
+    public void setArticles(List<ArticlesEntity> articles) {
         this.articles = articles;
     }
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -115,4 +118,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }
