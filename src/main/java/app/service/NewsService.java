@@ -74,5 +74,13 @@ public class NewsService {
                 .entityListToArticlesList(entities);
     }
 
+    public List<ArticlesEntity> searchNews(String title) {
+
+        return newsRepo
+                .findAll().stream()
+                .filter(x -> x.getTitle().toLowerCase().contains(title.toLowerCase()))
+                .collect(Collectors.toList());
+    }
+
 }
 
