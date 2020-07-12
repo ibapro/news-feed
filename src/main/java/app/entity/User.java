@@ -5,9 +5,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 //@Data
 //@NoArgsConstructor
@@ -43,7 +41,7 @@ public class User implements UserDetails {
             , joinColumns = { @JoinColumn (name = "user_id") }
             ,inverseJoinColumns = { @JoinColumn (name = "articles_id")}
     )
-    private Set<ArticlesEntity> articles = new HashSet<>();
+    private List<ArticlesEntity> articles;
 
 
     public int getId() {
@@ -74,7 +72,7 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public Set<ArticlesEntity> getArticles() {
+    public List<ArticlesEntity> getArticles() {
         return articles;
     }
 
