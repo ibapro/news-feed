@@ -33,16 +33,15 @@
     </div>
 </header>
 
-<section class="main-section" th:each="news,iter : ${newsList}" th:remove="tag">
+<section class="main-section" th:each="news,iter : ${searchedNews}" th:remove="tag">
     <div class="tab">
         <a class="tab-link-wrapper" href="/open-tab" th:href="@{/open-tab(id=${iter.index})}">
             <img class="tab-image" th:src="${news.urlToImage}" src="img/Group.png" alt="404">
             <div class="tab-content">
-                <p class="tab-title" th:text="${news.title}" >Coronavirus pandemic: Tracking the global outbreak</p>
-                <p class="tab-description" th:text="${news.content}" >Coronavirus is continuing its spread across the world, with more than 8.5
-                    million confirmed cases in 188 countries. More than 460,000 people have lost their lives.</p>
+                <p class="tab-title" th:text="${news.title}" ></p>
+                <p class="tab-description" th:text="${news.content}"></p>
                 <p class="tab-tags"><a class="tab-link" th:href="${news.url}">Show all</a></p>
-                <p class="tab-date" th:text="${news.publishedAt}" >June 21/2020</p>
+                <p class="tab-date" th:text="${news.publishedAt}" ></p>
             </div>
         </a>
         <div>
