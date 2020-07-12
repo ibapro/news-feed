@@ -1,8 +1,6 @@
 server:
   port: 8080
 spring:
-  main:
-    banner-mode: off
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
@@ -11,10 +9,9 @@ spring:
     generate-ddl: true
     show-sql: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
   mail:
-    host:
-      smtp: gmail.com
+    host: smtp.gmail.com
     port: 587
     username: newsfeedinfoteam@gmail.com
     password: News12345
@@ -22,14 +19,10 @@ spring:
       mail:
         smtp:
           auth: true
-          starttls: true
+          starttls:
+            enable: true
 
-#  spring.mail.host=smtp.gmail.com
-#  spring.mail.port=587
-#  spring.mail.username=<login user to smtp server>
-#  spring.mail.password=<login password to smtp server>
-#  spring.mail.properties.mail.smtp.auth=true
-#  spring.mail.properties.mail.smtp.starttls.enable=true
+
 
 news:
   api:
@@ -37,3 +30,11 @@ news:
 
 
 
+    #email configuration for application.properties
+
+    #  spring.mail.host=smtp.gmail.com
+    #  spring.mail.port=587
+    #  spring.mail.username=<login user to smtp server>
+    #  spring.mail.password=<login password to smtp server>
+    #  spring.mail.properties.mail.smtp.auth=true
+    #  spring.mail.properties.mail.smtp.starttls.enable=true
