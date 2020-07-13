@@ -31,10 +31,10 @@ public class ArticlesEntity {
     @Type(type = "text")
     private String content;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_news"
-            , joinColumns = { @JoinColumn (name = "articles_id") }
-            ,inverseJoinColumns = { @JoinColumn (name = "user_id")})
+    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "articles")
+//    @JoinTable(name = "user_news"
+//            , joinColumns = { @JoinColumn (name = "articles_id") }
+//            ,inverseJoinColumns = { @JoinColumn (name = "user_id")})
     private Set<User> users = new HashSet<>();
 
     public int getId() {
