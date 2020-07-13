@@ -3,3 +3,5 @@
 
 # `*.iml` files in all sub-directories
 **/*.iml
+target/*
+target
