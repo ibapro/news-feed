@@ -17,7 +17,7 @@ public class ConfigMVC implements WebMvcConfigurer {
             { "/disable-news",    "disable-news"    },
             { "/forgot-password", "forgot-password" },
             { "/main-page",       "main-page"       },
-            { "/open-tab",        "open-tab"        },
+            { "/open-tab",        "open-tab"        }
     };
 
     @Override

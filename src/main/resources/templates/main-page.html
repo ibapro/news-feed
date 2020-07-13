@@ -11,15 +11,15 @@
 <header class="main-header">
     <a href="main-page" class="main-header-logo"><img src="./img/Group%2012.png" alt="IBA Tech Academy"></a>
     <div class="main-header-wrapper">
-        <form action="#" th:action="@{/search}" th:value="${search}" method="post">
-            <label class="main-header-search-wrapper">
-                <input type="search" class="main-header-search" placeholder="Search" name="search">
+        <form action="#" th:action="@{/search}" th:value="${search}" method="post" >
+            <label class="main-header-search-wrapper" >
+                <input type="search"  class="main-header-search" placeholder="Search" name="search" >
                 <img src="./img/search-icon.svg" alt="Search Icon">
             </label>
         </form>
         <div class="main-header-profile-wrapper">
             <div class="main-header-profile-credentials">
-                <span class="main-header-profile-welcome">Welcome,</span>
+                <span class="main-header-profile-welcome">Welcome</span>
                 <span  class="main-header-username"></span>
             </div>
             <img class="main-header-user-icon" src="./img/user-icon-with-background.svg" alt="User Icon">

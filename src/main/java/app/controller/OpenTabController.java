@@ -24,4 +24,3 @@ public class OpenTabController {
         return new ModelAndView("open-tab", "news", news);
     }
 }
-
