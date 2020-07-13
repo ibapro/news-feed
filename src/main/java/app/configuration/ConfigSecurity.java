@@ -1,6 +1,7 @@
 package app.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,7 +20,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public ConfigSecurity(UserDetailsService userDetailsService, BCryptPasswordEncoder passwordEncoder) {
+    public ConfigSecurity(@Qualifier("userDetailsServiceImpl") UserDetailsService userDetailsService, BCryptPasswordEncoder passwordEncoder) {
         this.userDetailsService = userDetailsService;
         this.passwordEncoder = passwordEncoder;
     }
@@ -31,18 +32,26 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/create", "/index", "/forgot-password", "/registration").permitAll()
                 .antMatchers("/css/**", "/img/**").permitAll()
                 .anyRequest().authenticated()
+
                 .and()
-                .formLogin()
-                .loginPage("/index")
-                .usernameParameter("email")
-                .successForwardUrl("/main-page")
-                .failureUrl("/registration")
-                .permitAll()
+                    .formLogin()
+                    .loginPage("/index")
+                    .usernameParameter("email")
+                    .successForwardUrl("/main-page")
+                    .failureUrl("/index?error")
+
                 .and()
-                .csrf().disable()
-                .logout()
-                .deleteCookies("JSESSIONID")
-                .permitAll();
+                    .logout()
+                    .deleteCookies("JSESSIONID")
+
+                .and()
+                    .rememberMe().
+                    key("uniqueAndSecret").rememberMeParameter("remember-me")
+
+                .and()
+                    .csrf().disable();
+
+
     }
 
     @Override
