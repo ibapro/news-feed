@@ -1,0 +1,23 @@
+{
+  "properties": [
+    {
+      "name": "spring.datasource.jpa.generate-ddl",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.jpa.generate-ddl."
+    },
+    {
+      "name": "spring.datasource.jpa.show-sql",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.jpa.show-sql."
+    },
+    {
+      "name": "spring.datasource.jpa.hibernate.ddl-auto",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.jpa.hibernate.ddl-auto."
+    },
+    {
+      "name": "news.api.url",
+      "type": "java.lang.String",
+      "description": "Description for news.api.url."
+    }
+  ] }
