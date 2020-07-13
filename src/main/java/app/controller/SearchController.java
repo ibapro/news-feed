@@ -23,7 +23,6 @@ public class SearchController {
     @PostMapping("/search")
     public ModelAndView searchDetail(@ModelAttribute("search") String search, Model model){
         List<Articles> searchedNews = newsService.searchNews(search);
-//        model.addAttribute("searchedNews", searchedNews);
         return new ModelAndView( "search-result","newsList", searchedNews);
     }
     @GetMapping("/search-result")

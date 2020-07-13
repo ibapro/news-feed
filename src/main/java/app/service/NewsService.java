@@ -7,16 +7,13 @@ import app.mapper.ArticlesMapper;
 import app.restclient.response.Articles;
 import app.restclient.response.News;
 import app.repo.NewsRepo;
-import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -74,13 +71,13 @@ public class NewsService {
                 .entityListToArticlesList(entities);
     }
 
-    public List<ArticlesEntity> searchNews(String title) {
-
-        return newsRepo
+    public List<Articles> searchNews(String title) {
+        List<ArticlesEntity> entities = newsRepo
                 .findAll().stream()
                 .filter(x -> x.getTitle().toLowerCase().contains(title.toLowerCase()))
                 .collect(Collectors.toList());
+        return ArticlesMapper.INSTANCE
+                .entityListToArticlesList(entities);
     }
 
 }
-
