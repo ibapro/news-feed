@@ -11,11 +11,8 @@
 <header class="main-header">
     <a href="main-page" class="main-header-logo"><img src="./img/Group%2012.png" alt="IBA Tech Academy"></a>
     <div class="main-header-wrapper">
-        <form action="#" th:action="@{/main-page/search}" th:object="${search}">
-            <label class="main-header-search-wrapper">
-                <input type="search" class="main-header-search" placeholder="Search" name="search">
-                <img src="./img/search-icon.svg" alt="Search Icon">
-            </label>
+        <form action="#" th:action="@{/main-page/search}" th:object="${search}" method="post">
+
         </form>
         <div class="main-header-profile-wrapper">
             <div class="main-header-profile-credentials">
@@ -33,7 +30,7 @@
     </div>
 </header>
 
-<section class="main-section" th:each="news,iter : ${searchedNews}" th:remove="tag">
+<section class="main-section" th:each="news,iter : ${newsList}" th:remove="tag">
     <div class="tab">
         <a class="tab-link-wrapper" href="/open-tab" th:href="@{/open-tab(id=${iter.index})}">
             <img class="tab-image" th:src="${news.urlToImage}" src="img/Group.png" alt="404">
