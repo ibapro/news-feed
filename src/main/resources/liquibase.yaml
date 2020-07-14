@@ -1,14 +1,14 @@
 #pruduction db
-url: jdbc:mysql://localhost:3306/production
-username: root
-password: hbstudent
+url: jdbc:postgresql://ec2-34-236-215-156.compute-1.amazonaws.com:5432/dnr40f0co6eje
+username: lvoxgdhsdpzxsw
+password: ba7ef6de2673d67e29588d1f413bc1e40688a6eaa6f13aba62addcbad5319827
 #development db
-referenceUrl: jdbc:mysql://localhost:3306/development
-referenceUsername: root
-referencePassword: hbstudent
+referenceUrl: jdbc:postgresql://localhost:5432/postgres
+referenceUsername: postgres
+referencePassword: password
 #for diff/update
 changeLogFile: src/main/resources/db/changelog/master.yaml
 #for initial changelog creation
 outputChangeLogFile: src/main/resources/db/changelog/step0.yaml
 #for diff operation
-diffChangeLogFile: src/main/resources/db/changelog/changes/diff.yaml
+diffChangeLogFile: src/main/resources/db/changelog/changes/001.yaml
