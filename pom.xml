@@ -33,6 +33,7 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
+
             <plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
@@ -43,9 +44,18 @@
                     </goals>
                 </execution>
             </executions>
-        </plugin>
+            </plugin>
 
-
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>3.10.1</version>
+                <configuration>
+                    <propertyFile>src/main/resources/liquibase.yaml</propertyFile>
+                    <changeLogDirectory>src/main/resources</changeLogDirectory>
+                    <changeLogFile>db/changelog/master.yaml</changeLogFile>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -102,6 +112,19 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
             <version>5.2.4.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-maven-plugin</artifactId>
+            <version>3.10.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
         </dependency>
     </dependencies>
     <properties>
