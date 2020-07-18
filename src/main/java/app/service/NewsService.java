@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,7 @@ public class NewsService {
     private final Logger logger;
     private final NewsRepo newsRepo;
     private final UserRepo userRepo;
+
 
     public NewsService(RestTemplate rest, Logger logger, NewsRepo newsRepo, UserRepo userRepo) {
         this.rest = rest;
@@ -60,7 +62,7 @@ public class NewsService {
     }
 
     public List<Articles> persistAll(List<Articles> articles) {
-        return articles.stream().map(this::persist).collect(Collectors.toList());
+        return articles.stream().map(articlesN -> persist(articlesN)).collect(Collectors.toList());
     }
 
     public List<Articles> getUserArticles() {
@@ -70,6 +72,7 @@ public class NewsService {
         return ArticlesMapper.INSTANCE
                 .entityListToArticlesList(entities);
     }
+
     public List<Articles> deleteUserArticlesById(int id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userRepo.findByEmail(user.getEmail());

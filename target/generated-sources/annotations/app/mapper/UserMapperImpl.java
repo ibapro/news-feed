@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-07-15T01:50:31+0400",
+    date = "2020-07-19T01:51:22+0400",
     comments = "version: 1.3.0.Beta2, compiler: javac, environment: Java 13.0.3 (Azul Systems, Inc.)"
 )
 @Component
@@ -60,6 +60,7 @@ public class UserMapperImpl implements UserMapper {
 
         ArticlesEntity articlesEntity = new ArticlesEntity();
 
+        articlesEntity.setTimeForRead( articles.getTimeForRead() );
         articlesEntity.setId( articles.getId() );
         articlesEntity.setAuthor( articles.getAuthor() );
         articlesEntity.setTitle( articles.getTitle() );
@@ -92,6 +93,7 @@ public class UserMapperImpl implements UserMapper {
 
         Articles articles = new Articles();
 
+        articles.setTimeForRead( articlesEntity.getTimeForRead() );
         articles.setAuthor( articlesEntity.getAuthor() );
         articles.setTitle( articlesEntity.getTitle() );
         articles.setId( articlesEntity.getId() );
