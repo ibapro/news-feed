@@ -36,9 +36,12 @@ public class UserService {
     public UserDTO addNews(Articles articles) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ArticlesEntity articlesEntity = ArticlesMapper.INSTANCE.articlesToEntity(articles);
-        if (!user.getArticles().contains(articlesEntity))
+        user = userRepo.findByEmail(user.getEmail());
+        if (!user.getArticles().contains(articlesEntity)) {
             user.getArticles().add(articlesEntity);
-        return UserMapper.INSTANCE.userToUserDto(userRepo.save(user));
+        }
+        user = userRepo.save(user);
+        return UserMapper.INSTANCE.userToUserDto(user);
     }
 
     public boolean isRegistered(String email) {

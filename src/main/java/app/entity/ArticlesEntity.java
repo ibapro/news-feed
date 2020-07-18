@@ -30,12 +30,22 @@ public class ArticlesEntity {
     private String publishedAt;
     @Type(type = "text")
     private String content;
+    private String timeForRead;
 
     @ManyToMany(fetch = FetchType.LAZY,mappedBy = "articles")
 //    @JoinTable(name = "user_news"
 //            , joinColumns = { @JoinColumn (name = "articles_id") }
 //            ,inverseJoinColumns = { @JoinColumn (name = "user_id")})
     private Set<User> users = new HashSet<>();
+
+
+    public String getTimeForRead() {
+        return timeForRead;
+    }
+
+    public void setTimeForRead(String timeForRead) {
+        this.timeForRead = timeForRead;
+    }
 
     public int getId() {
         return id;

@@ -3,7 +3,9 @@ package app.service;
 import app.configuration.ConfigUrl;
 import app.entity.ArticlesEntity;
 import app.entity.User;
+import app.helper.CommonHelper;
 import app.mapper.ArticlesMapper;
+import app.repo.UserRepo;
 import app.restclient.response.Articles;
 import app.restclient.response.News;
 import app.repo.NewsRepo;
@@ -23,11 +25,13 @@ public class NewsService {
     private final RestTemplate rest;
     private final Logger logger;
     private final NewsRepo newsRepo;
+    private final UserRepo userRepo;
 
-    public NewsService(RestTemplate rest, Logger logger, NewsRepo newsRepo) {
+    public NewsService(RestTemplate rest, Logger logger, NewsRepo newsRepo, UserRepo userRepo) {
         this.rest = rest;
         this.logger = logger;
         this.newsRepo = newsRepo;
+        this.userRepo = userRepo;
     }
 
     public News getNews() {
@@ -41,6 +45,8 @@ public class NewsService {
     }
 
     public Articles persist(Articles articles) {
+        String timeForRead = CommonHelper.countTimeForRead(articles.getContent());
+        articles.setTimeForRead(timeForRead);
         ArticlesEntity articlesEntity = ArticlesMapper.INSTANCE.articlesToEntity(articles);
         try {
             articlesEntity = newsRepo.save(articlesEntity);
@@ -54,18 +60,21 @@ public class NewsService {
     }
 
     public List<Articles> persistAll(List<Articles> articles) {
-        return articles.stream().map(articlesN -> persist(articlesN)).collect(Collectors.toList());
+        return articles.stream().map(this::persist).collect(Collectors.toList());
     }
 
     public List<Articles> getUserArticles() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user = userRepo.findByEmail(user.getEmail());
         List<ArticlesEntity> entities = user.getArticles();
         return ArticlesMapper.INSTANCE
                 .entityListToArticlesList(entities);
     }
     public List<Articles> deleteUserArticlesById(int id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user = userRepo.findByEmail(user.getEmail());
         user.getArticles().remove(id);
+        user = userRepo.save(user);
         List<ArticlesEntity> entities = user.getArticles();
         return ArticlesMapper.INSTANCE
                 .entityListToArticlesList(entities);

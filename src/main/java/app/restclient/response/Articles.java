@@ -18,7 +18,15 @@ public class Articles {
     private String urlToImage;
     private String publishedAt;
     private String content;
+    private String timeForRead;
 
+    public String getTimeForRead() {
+        return timeForRead;
+    }
+
+    public void setTimeForRead(String timeForRead) {
+        this.timeForRead = timeForRead;
+    }
 
     public void setAuthor(String author) {
         this.author = author;
