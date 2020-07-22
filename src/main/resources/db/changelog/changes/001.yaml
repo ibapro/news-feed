@@ -1,6 +1,6 @@
 databaseChangeLog:
 - changeSet:
-    id: 1595415088612-1
+    id: 1595420883037-1
     author: mirza (generated)
     changes:
     - createTable:
@@ -24,7 +24,7 @@ databaseChangeLog:
             type: VARCHAR(255)
         tableName: users
 - changeSet:
-    id: 1595415088612-2
+    id: 1595420883037-2
     author: mirza (generated)
     changes:
     - createTable:
@@ -41,7 +41,7 @@ databaseChangeLog:
             type: INTEGER
         tableName: user_news
 - changeSet:
-    id: 1595415088612-3
+    id: 1595420883037-3
     author: mirza (generated)
     changes:
     - createTable:
@@ -80,7 +80,7 @@ databaseChangeLog:
             type: VARCHAR(255)
         tableName: news
 - changeSet:
-    id: 1595415088612-4
+    id: 1595420883037-4
     author: mirza (generated)
     changes:
     - createTable:
@@ -105,7 +105,7 @@ databaseChangeLog:
             type: INTEGER
         tableName: password_reset
 - changeSet:
-    id: 1595415088612-5
+    id: 1595420883037-5
     author: mirza (generated)
     changes:
     - addUniqueConstraint:
@@ -113,7 +113,7 @@ databaseChangeLog:
         constraintName: uk_6dotkott2kjsp8vw4d0m25fb7
         tableName: users
 - changeSet:
-    id: 1595415088612-6
+    id: 1595420883037-6
     author: mirza (generated)
     changes:
     - addForeignKeyConstraint:
@@ -128,7 +128,7 @@ databaseChangeLog:
         referencedTableName: users
         validate: true
 - changeSet:
-    id: 1595415088612-7
+    id: 1595420883037-7
     author: mirza (generated)
     changes:
     - addUniqueConstraint:
@@ -136,7 +136,7 @@ databaseChangeLog:
         constraintName: uk_ql0j4y2wapts584qy53pc3ecb
         tableName: news
 - changeSet:
-    id: 1595415088612-8
+    id: 1595420883037-8
     author: mirza (generated)
     changes:
     - addForeignKeyConstraint:
@@ -151,7 +151,7 @@ databaseChangeLog:
         referencedTableName: users
         validate: true
 - changeSet:
-    id: 1595415088612-9
+    id: 1595420883037-9
     author: mirza (generated)
     changes:
     - addForeignKeyConstraint:
@@ -166,7 +166,7 @@ databaseChangeLog:
         referencedTableName: news
         validate: true
 - changeSet:
-    id: 1595415088612-10
+    id: 1595420883037-10
     author: mirza (generated)
     changes:
     - createSequence:
