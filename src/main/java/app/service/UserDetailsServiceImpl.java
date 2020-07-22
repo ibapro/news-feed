@@ -1,7 +1,7 @@
 package app.service;
 
 import app.entity.User;
-import app.repo.UserRepo;
+import app.repository.UserRepo;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

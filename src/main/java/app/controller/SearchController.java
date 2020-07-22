@@ -1,6 +1,5 @@
 package app.controller;
 
-import app.entity.ArticlesEntity;
 import app.restclient.response.Articles;
 import app.service.NewsService;
 import org.springframework.stereotype.Controller;
