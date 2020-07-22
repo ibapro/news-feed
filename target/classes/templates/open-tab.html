@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>News-Feed: detail</title>
+
+    <link rel="stylesheet" href="css/open-tab.css">
+</head>
+<body>
+<header class="main-header">
+    <a href="main-page" class="main-header-logo"><img src="./img/Group%2012.png" alt="IBA Tech Academy"></a>
+    <div class="main-header-wrapper">
+        <form action="#" th:action="@{/search}" th:value="${search}" method="post" >
+<!--            <label class="main-header-search-wrapper" >-->
+<!--                <input type="search"  class="main-header-search" placeholder="Search" name="search" >-->
+<!--                <img src="./img/search-icon.svg" alt="Search Icon">-->
+<!--            </label>-->
+        </form>
+        <div class="main-header-profile-wrapper">
+            <div class="main-header-profile-credentials">
+                <span class="main-header-profile-welcome" >Welcome,</span>
+                <span class="main-header-username" th:text="${#authentication.getPrincipal().getFullName()}"></span>
+            </div>
+            <img class="main-header-user-icon" src="./img/user-icon-with-background.svg" alt="User Icon">
+            <div class="hidden-accordion-wrapper">
+                <ul class="hidden-accordion">
+<!--                    <li class="hidden-accordion-item"><img class="hidden-accordion-item-image" src="./img/user-icon-gray.svg" alt="User Icon"><a href="./user-profile.html" class="hidden-accordion-item-link">Profile</a></li>-->
+<!--                    <li class="hidden-accordion-item"><img src="./img/favourite-icon.svg" alt="Favourite Icon"><a href="#" class="hidden-accordion-item-link">Favourites</a></li>-->
+<!--                    <li class="hidden-accordion-item"><img src="./img/message-icon.svg" alt="Message Icon"><a href="#" class="hidden-accordion-item-link">Chat</a></li>-->
+                    <li class="hidden-accordion-item"><img src="./img/log-out-icon.svg" alt="Log Out Icon"><a href="index" class="hidden-accordion-item-link">Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="tab-section">
+    <img class="main-image" th:src="${news.urlToImage}" src="img/1_wW2OJ13gVZWrUcl4V0WAgg%201.png">
+    <img class="background-drawing" src="img/Group.png">
+    <div class="text-box">
+        <p class="text-box-title" th:text="${news.title}">According to Steve Jobs, this one thing separates the doers from the dreamers</p>
+        <p class="main-gap" th:text="${news.content}">Most people never pick up the phone. Most people never call and ask. And that’s what separates sometimes the people who do things from those who just dream about them. You gotta act. You gotta be willing to fail. You gotta be willing to crash a burn. With people on the phone or starting a company, if you’re afraid you’ll fail, you won’t get very far.</p>
+  </div>
+</section>
+
+</body>
+</html>
