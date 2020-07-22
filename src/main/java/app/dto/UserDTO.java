@@ -1,6 +1,5 @@
 package app.dto;
 
-import app.constraints.PasswordMatches;
 import app.restclient.response.Articles;
 
 import javax.validation.constraints.NotBlank;
@@ -13,7 +12,6 @@ import java.util.List;
 //@NoArgsConstructor
 //@AllArgsConstructor
 
-@PasswordMatches
 public class UserDTO {
 
     private Integer id;
