@@ -15,7 +15,7 @@ public class ExceptionHandlerImpl {
 
     @ExceptionHandler({TokenExpiredException.class})
     public String handleTokenExpired(final TokenExpiredException ex) {
-        return "redirect:/change-password?tokenError="+ex.getMessage();
+        return "redirect:/index?tokenError="+ex.getMessage();
     }
 
 

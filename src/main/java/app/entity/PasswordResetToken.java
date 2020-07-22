@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "password_reset")
 public class PasswordResetToken {
-    private static final int EXPIRATION = 5;
+    private static final int EXPIRATION = 1;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

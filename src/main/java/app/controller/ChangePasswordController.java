@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -29,7 +30,7 @@ public class ChangePasswordController {
     public String handle(final Model model, @RequestParam("token") String token) {
         String resetToken = userSecurityService.validatePasswordResetToken(token);
         if (resetToken != null) {
-            throw new TokenExpiredException("Invalid token");
+            throw new TokenExpiredException("You have lost your time");
         } else {
             model.addAttribute("tokenValue", token);
             model.addAttribute("passwordDto", new PasswordDTO());
@@ -38,19 +39,21 @@ public class ChangePasswordController {
     }
 
     @PostMapping("/change-password")
-    public String handlePost(@Valid @ModelAttribute(value = "passwordDto") PasswordDTO passwordDto, BindingResult bindingResult, HttpSession model) {
+    public ModelAndView handlePost(@Valid @ModelAttribute(value = "passwordDto") PasswordDTO passwordDto, BindingResult bindingResult, HttpSession model) {
         if (bindingResult.hasErrors())
-            return "redirect:/change-password?token="+model.getAttribute("tokenValue");
+            return new ModelAndView("redirect:/change-password?token="+
+                    model.getAttribute("tokenValue"),"passwordDto",passwordDto);
 
         passwordDto.setToken((String) model.getAttribute("tokenValue"));
         final String result = userSecurityService.validatePasswordResetToken(passwordDto.getToken());
 
-        if (result != null) { return "redirect:/change-password?tokenError"; }
+        if (result != null) {
+            throw new TokenExpiredException("You have lost your time"); }
 
         Optional<User> user = userService.getUserByPasswordResetToken(passwordDto.getToken());
+        user.ifPresent(value -> userService.changePasswordWithToken(value, passwordDto.getPassword()));
 
-        if (user.isPresent()) { userService.changePasswordWithToken(user.get(), passwordDto.getPassword()); }
+        return new ModelAndView("redirect:/index");
 
-        return "redirect:/index";
     }
 }
